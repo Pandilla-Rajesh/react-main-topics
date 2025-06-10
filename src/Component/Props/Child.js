@@ -1,25 +1,20 @@
 import React from 'react'
+import { Card, CardBody, CardText, CardTitle, Col, Container, Row } from 'react-bootstrap'
 
 const Child = (props)=>{
 
-    const {message, age, name, role, empid} = props.data
+    const {name, message, age, role, empid} = props.data
 
     return(
-        <section>
-            <article className='container'>
-                <div className='row g-0'>
-                    <div className='col d-flex flex-wrap flex-column border p-3 rounded-3'>
-                        <h1>Name: {name}</h1>
-                        <h4>Message: {message}</h4>
-                        <h3>Age: {age}</h3>
-                        <div className='d-flex align-items-center justify-content-between'>
-                            <p>Role: {role}</p>
-                            <p>Employee Id: {empid}</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+      <>
+         <CardTitle className='bg-success text-white p-3'>Name: {name}</CardTitle>
+         <CardText>Message: {message}</CardText>
+         <div className='d-flex justify-content-between'>
+            <h4>Age: {age}</h4>
+            <h4>Emp Id: {empid}</h4>
+         </div>
+           <h5>Role: {role}</h5>
+      </>
     )
 }
 

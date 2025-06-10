@@ -11,7 +11,7 @@ const data ={
 
     return(
         <section className='bg-info p-3'>
-            <article className='container'>
+            <article className='container-fluid'>
                 <div className='row'>
                     <div className='bg-grey p-2'>
                         <h1 className='text-center fw-bold mb-5'>Welcome to the Props Component</h1>
