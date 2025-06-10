@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Approutes from "./Approutes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+function App(){
+
+  return(
+
+    <>
+      <Outlet/>
+      <Approutes/>
+      <div className="go-top">
+        <a href="#" className="go-to-top" aria-label="go-to-top">
+          <i class="bi bi-arrow-up"></i>
         </a>
-      </header>
-    </div>
-  );
+      </div>
+    </>
+
+  )
+
 }
 
-export default App;
+export default App
