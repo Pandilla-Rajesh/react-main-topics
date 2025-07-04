@@ -14,11 +14,11 @@ const Parent = () => {
 
     const userDetails = [
         { title: 'Uniq Key List in React' },
-        {title: 'Uniq Key List in React', name: 'Rajesh', lname: 'Pandilla', age: 40, phone: 8247728356, email: 'rajesh@gmail.com', role:'SSE UI DEVELOPER' },
+        {title: 'Uniq Key List in React', name: 'Rajesh', lname: 'Pandilla', age: 40, phone: 8247732658, email: 'rajesh@gmail.com', role:'SSE UI DEVELOPER' },
         {title: 'Uniq Key List in React', name: 'Ushasri', lname: 'Pandilla', age: 34, phone: 970456789, email: 'usha@gmail.com' },
-        {title: 'Uniq Key List in React', name: 'Aadhya', lname: 'Pandilla', age: 9, phone: 9966843353, email: 'aadhya@gmail.com' },
+        {title: 'Uniq Key List in React', name: 'Aadhya', lname: 'Pandilla', age: 9, phone: 9968435333, email: 'aadhya@gmail.com' },
         {title: 'Uniq Key List in React', name: 'Arjun', lname: 'Pandilla', age: 4, phone: 8247728356, email: 'arjun@gmail.com' },
-        {title: 'Uniq Key List in React', name: 'Sathyanarayana', lname: 'Pandilla', age: 76, phone: 8008930060, email: 'sathya@gmail.com' },
+        {title: 'Uniq Key List in React', name: 'Sathyanarayana', lname: 'Pandilla', age: 76, phone: 800878989654, email: 'sathya@gmail.com' },
         {title: 'Uniq Key List in React', name: 'Anasurya', lname: 'Pandilla', age: 65, phone: 996655358, email: 'anasurya@gmail.com' }
     ]
 

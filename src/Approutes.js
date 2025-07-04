@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './Component/Login/Login'
+import TodoList from './Component/TodoList/TodoList'
 
 const MainLayout = React.lazy(()=>import('./MaibLayout/MainLayout'))
 const Home = React.lazy(()=>import('./Pages/Home/Home'))
@@ -28,7 +29,8 @@ function Approutes(){
             {path:'props', element:(<Suspense fallback={<div>...Loading</div>}><Props/></Suspense>)},
             {path:'formik', element:(<Suspense fallback={<div>...Loading</div>}><Formik/></Suspense>)},
             {path:'scroll', element:(<Suspense fallback={<div>...Loading</div>}><InfiniteScroll/></Suspense>)},
-            {path:'portal', element:(<Suspense fallback={<div>...Loading</div>}><ReactPortal/></Suspense>)}
+            {path:'portal', element:(<Suspense fallback={<div>...Loading</div>}><ReactPortal/></Suspense>)},
+            {path:'todolist', element:(<Suspense fallback={<div>...Loading</div>}><TodoList/></Suspense>)}
         ]
     }
     ])

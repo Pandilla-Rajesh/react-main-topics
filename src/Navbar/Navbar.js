@@ -8,9 +8,9 @@ const Navbar = () => {
   return (
     <nav className='bg-slate-100 shadow-sm sticky top-[10vh] w-full z-50'>
       <div className='container mx-auto px-3 py-2 flex items-center justify-between'>
-        <div className=' w-16'>
+        <div className=' w-40'>
           <Link to="/">
-            <img src={require('../assets/images/20yrs_logo.png')} className='' alt="cybercity-brand" />
+            <img src={require('../assets/images/logoipsum-354.png')} className='' alt="cybercity-brand" />
           </Link>
         </div>
         <div className='md:hidden lg:hidden'>
@@ -45,6 +45,26 @@ const Navbar = () => {
               font-medium transition ease-in delay-300'>
                 APICalls
               </Link>
+            </li>
+            <li>
+              <Link to="/props" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
+              ease-in-out'>Props</Link>
+            </li>
+             <li>
+              <Link to="/formik" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
+              ease-in-out'>Formik</Link>
+            </li>
+             <li>
+              <Link to="/scroll" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
+              ease-in-out'>InfiniteScroll</Link>
+            </li>
+             <li>
+              <Link to="/portal" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
+              ease-in-out'>React Portals</Link>
+            </li>
+            <li>
+              <Link to="/todolist" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
+              ease-in-out'>HOC</Link>
             </li>
           </ul>
 
