@@ -1,6 +1,7 @@
 import Recat from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../Header/Header'
+import Navbar from '../Navbar/Navbar'
 
 function MainLayout() {
 
@@ -8,7 +9,8 @@ function MainLayout() {
         <>
             {/* <h2>Welcome to main layout</h2> */}
             <header className='sticky-top'>
-                <Header/>
+                {/* <Header/> */}
+                <Navbar/>
             </header>
             <main>
                 <Outlet />

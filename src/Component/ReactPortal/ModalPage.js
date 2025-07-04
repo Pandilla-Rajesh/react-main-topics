@@ -12,7 +12,7 @@ const ModalPage = () => {
         <section>
             <article className='container'>
                 <div className='row'>
-                    <div className='col-md-4 border border-secondary p-3 rounded-3 text-center'>
+                    <div className='col border border-secondary p-3 rounded-3 text-center'>
                         <h2 className='mb-3 fw-semibold text-warning'>Multiple React Portal Modal Example</h2>
                         <div className=''>
                             <button className='bg-danger rounded border border-0 px-3 py-2 text-white' onClick={() => 
