@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Greeting from '../../Component/Greeting/Greeting'
 import axios from 'axios';
+import Counter from '../../Counter';
 
 function Home({ name }) {
 
     const [count, setCount] = useState(0)
+    const mountRef = useRef(true)
+
+    useEffect(()=>{
+        if(mountRef.current){
+            mountRef.current = false
+        }
+    }, [])
 
     return (
         <section className='bg-gradient-to-tr from-violet-800 to-violet-500 p-5'>
@@ -81,16 +89,35 @@ function Home({ name }) {
                     </div>
 
                     <div className='bg-white shadow-lg rounded px-3 py-2'>
-                        <Counter count={count} setCount={setCount} />
+                        {/* <Counter count={count} setCount={setCount} /> */}
+                      
+                        <Counter/>
+
                     </div>
 
+                    {/* useRef */}
+                     <div className='bg-white shadow-lg rounded px-3 py-2'>
+                        <h3 className='font-bold text-center text-3xl text-violet-900'>
+                            useRef Hook
+                        </h3>
+                        <div>Some JSX</div>
+                        <div>
+                            <CounterComp/>
+                        </div>
+                     </div>
+
+                    {/* end */}
+
                 </div>
+
+                
+
             </article>
         </section>
     )
 }
 
-const Counter=()=>{
+const CounterComp=()=>{
 
     const [count, setCount] = useState(0)
     useEffect(()=>{
@@ -100,9 +127,16 @@ const Counter=()=>{
 
     return(
         <>
-          <h3 className='text-xl text-slate-800'>You Clicked: {count} times</h3>
-          <button className='border rounded px-3 py-2 bg-blue-900 text-slate-100'
-          onClick={()=>setCount((prev) => prev+1)}>Click Me</button>
+          <div className='flex items-center justify-center flex-col'>
+            <h2 className='text-2xl font-bold text-violet-900'>
+                You Clicked: {count} times</h2>
+            <div className='flex'>
+<button className='border rounded px-3 py-2 bg-blue-900 text-slate-100 me-3'
+          onClick={()=>setCount((prev) => prev+1)}>Increment</button>
+          <button className='border rounded px-3 py-2 text-slate-50 bg-red-800' 
+          onClick={()=>{if(count > 0){setCount((prev) => prev-1)}}}>Decrement</button>            
+            </div>
+          </div>
         </>
     )
 }

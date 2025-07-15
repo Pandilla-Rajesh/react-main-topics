@@ -17,7 +17,7 @@ const Header = ()=>{
       window.removeEventListener('scroll', scrollHandle)
     }
 
-  },)
+  },[])
 
     return(
       <nav className={`navbar navbar-expand-lg ${issticky ? 'sticky-head' : 'default-head'}`}>

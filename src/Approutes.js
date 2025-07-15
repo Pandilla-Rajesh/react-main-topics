@@ -9,6 +9,7 @@ const CommonPage = React.lazy(()=>import('./Pages/CommonPage/CommonPage'))
 const APICalls = React.lazy(()=>import('./Component/APICalls/APICalls'))
 const Props = React.lazy(()=>import('./Component/Props/Props'))
 const Formik = React.lazy(()=>import('./Component/Formik/Formik'))
+const ReactHooks = React.lazy(()=>import('./Component/ReactHooks/ReactHooks'))
 const InfiniteScroll = React.lazy(()=>import('./Component/InfiniteScroll/InfiniteScroll'))
 const ReactPortal = React.lazy(()=>import('./Component/ReactPortal/ReactPortal'))
 
@@ -28,6 +29,7 @@ function Approutes(){
             {path:'apicalls', element:(<Suspense fallback={<div>...Loading</div>}><APICalls/></Suspense>)},
             {path:'props', element:(<Suspense fallback={<div>...Loading</div>}><Props/></Suspense>)},
             {path:'formik', element:(<Suspense fallback={<div>...Loading</div>}><Formik/></Suspense>)},
+            {path:'reacthooks', element:(<Suspense fallback={<div>...Loading</div>}><ReactHooks/></Suspense>)},
             {path:'scroll', element:(<Suspense fallback={<div>...Loading</div>}><InfiniteScroll/></Suspense>)},
             {path:'portal', element:(<Suspense fallback={<div>...Loading</div>}><ReactPortal/></Suspense>)},
             {path:'todolist', element:(<Suspense fallback={<div>...Loading</div>}><TodoList/></Suspense>)}
