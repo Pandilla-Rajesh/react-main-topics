@@ -37,7 +37,7 @@ const CommonPage=()=>{
             const interval =setInterval(()=>{
                     setTime((prev) => prev+1)
                     setCurrentDate(new Date())
-            }, 200)
+            }, 100)
             return()=>clearInterval(interval)
         }else{
             setTime(0)

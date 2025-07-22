@@ -6,12 +6,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { ThemeProvider } from './ContextMain';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-          <App />
+          <ThemeProvider>
+              <App/>
+          </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

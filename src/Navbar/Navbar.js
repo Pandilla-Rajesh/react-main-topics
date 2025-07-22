@@ -1,88 +1,81 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { useTheme } from '../ContextMain';
 
 const Navbar = () => {
-
-  const [isopen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   return (
-    <nav className='bg-slate-100 shadow-sm sticky top-[10vh] w-full z-50'>
+    <nav className={`shadow-sm sticky top-[10vh] w-full z-50 ${theme === 'dark' ? 
+    'bg-gray-800 text-white' : 'bg-slate-100 text-black'}`}>
       <div className='container mx-auto px-3 py-2 flex items-center justify-between'>
-        <div className=' w-40'>
+
+        {/* Logo */}
+        <div className='w-40'>
           <Link to="/">
-            <img src={require('../assets/images/logoipsum-354.png')} className='' alt="cybercity-brand" />
+            <img src={require('../assets/images/logoipsum-354.png')} alt="cybercity-brand" className='w-full h-auto' />
           </Link>
         </div>
-        <div className='md:hidden lg:hidden'>
-          {/* menu */}
-          <button onClick={() => setIsOpen(!isopen)} className='text-gray-700 focus:outline-none'>
-            {isopen ?
-              (<i class="bi bi-list"></i>) : (<i class="bi bi-list"></i>)
-            }
+
+        {/* Mobile Toggle */}
+        <div className='md:hidden'>
+          <button onClick={() => setIsOpen(!isOpen)} className='text-2xl focus:outline-none'>
+            {isOpen ? <i className="bi bi-x"></i> : <i className="bi bi-list"></i>}
           </button>
-          {/* end */}
         </div>
 
-        <div>
-
-          {/* navigation-start */}
-
-          <ul className={` visible md:flex md:items-center md:space-x-3 lg:space-x-3 lg:space-y-3 md:static absolute w-full
-                md-w-auto transition duration-300 ease-in ${isopen ? 'top-16 opacity-100' : 'top-[-500px] opacity-100'}`}>
-            <NavLink
-              to="/home"
-              className={({ isActive }) =>
-                `block px-2 py-2 lg:space-x-3 lg:space-y-3 font-medium transition ease-in 
-              ${isActive ? 'text-slate-50 bg-green-800 font-semibold px-3 rounded-lg' : 'hover:text-green-800'}`
-              }
-            >
-              Home
-            </NavLink>
-            <li>
-              <NavLink to="/common"
-                className={({ isActive }) => `block px-2 py-2 font-medium transition ease-in 
-              ${isActive ? 'text-slate-50 bg-green-800 font-semibold px-3 rounded-lg' : 'hover:text-green-800'}`}>
-                CommonPage
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/apicalls" className='block px-2 py-2 text-slate-700 hover:text-green-800 
-              font-medium transition ease-in delay-300'>
-                APICalls
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/props" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
-              ease-in-out'>Props</NavLink>
-            </li>
-            <li>
-              <NavLink to="/formik" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
-              ease-in-out'>Formik</NavLink>
-            </li>
-              <NavLink to="/reacthooks" className={({isActive})=> `block lg:space-x-3 lg:space-y-3 px-2 py-2 transition ease-in font-medium
-              ${isActive ? "text-slate-50 bg-green-800 px-3 rounded-lg" : "hover:text-green"}`}>
-                ReactHooks
-              </NavLink>
-            <li>
-              <NavLink to="/scroll" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
-              ease-in-out'>InfiniteScroll</NavLink>
-            </li>
-            <li>
-              <NavLink to="/portal" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
-              ease-in-out'>React Portals</NavLink>
-            </li>
-            <li>
-              <NavLink to="/todolist" className='block px-2 py-2 text-slate-700 hover:text-green-800 font-medium transition
-              ease-in-out'>HOC</NavLink>
-            </li>
+        {/* Navigation */}
+        <div className={`absolute md:static top-16 left-0 md:w-auto md:bg-transparent 
+        transition-all duration-300 ease-in z-4 mx-auto
+                        ${isOpen ? 'flex' : 'hidden'} lg:flex md:flex w-full bg-white flex-col`}>
+          <ul className='md:flex md:items-center space-y-0 md:space-y-0
+           mx-auto md:space-x-0 p-2 md:p-0 sm:bg-white'>
+            {[
+              { to: '/home', label: 'Home' },
+              { to: '/common', label: 'CommonPage' },
+              { to: '/apicalls', label: 'APICalls' },
+              { to: '/props', label: 'Props' },
+              { to: '/formik', label: 'Formik' },
+              { to: '/reacthooks', label: 'ReactHooks' },
+              { to: '/scroll', label: 'InfiniteScroll' },
+              { to: '/portal', label: 'React Portals' },
+              { to: '/todolist', label: 'HOC' }
+            ].map((item) => (
+              <li key={item.to}>
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-md transition font-medium ${
+                      isActive
+                        ? 'bg-green-700 text-white'
+                        : 'text-slate-700 hover:text-green-700'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
 
-          {/* end */}
+          {/* Theme Toggle Button */}
+          <ul className='mt-2 md:mt-0 md:ml-4 flex items-center'>
+              <button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              className={`text-sm px-4 py-2 rounded-md border ${
+                theme === 'light'
+                  ? 'bg-white text-black border-gray-300 hover:bg-gray-200'
+                  : 'bg-gray-900 text-white border-gray-700 hover:bg-gray-700'
+              }`}
+            >
+              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            </button>
+          </ul>
         </div>
-
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

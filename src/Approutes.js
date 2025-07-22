@@ -32,7 +32,7 @@ function Approutes(){
             {path:'reacthooks', element:(<Suspense fallback={<div>...Loading</div>}><ReactHooks/></Suspense>)},
             {path:'scroll', element:(<Suspense fallback={<div>...Loading</div>}><InfiniteScroll/></Suspense>)},
             {path:'portal', element:(<Suspense fallback={<div>...Loading</div>}><ReactPortal/></Suspense>)},
-            {path:'todolist', element:(<Suspense fallback={<div>...Loading</div>}><TodoList/></Suspense>)}
+            {path:'todolist', element:(<Suspense fallback={<div>...Loading</div>}><TodoList/></Suspense>)},
         ]
     }
     ])
