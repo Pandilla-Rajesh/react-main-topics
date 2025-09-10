@@ -8,6 +8,28 @@ function Home({ name }) {
     const [count, setCount] = useState(0)
     const mountRef = useRef(true)
 
+    // render-props //
+
+    const[pos, setPos] = useState({x:0, y:0})
+
+    useEffect(()=>{
+        const handleMouseMove=(e)=>{
+            setPos({x:e.clientX, y:e.clientY})
+            console.log('mousemove', e.clientX, e.clientY);
+        }
+
+        // add-the-event-listner//
+        window.addEventListener('mousemove', handleMouseMove)
+        
+        // clean-up prevent memory leaks //
+        return()=>{
+            window.removeEventListener('mousemove', handleMouseMove)
+        }
+
+    }, []) //run once when component mount//
+
+    // end //
+
     useEffect(()=>{
         if(mountRef.current){
             mountRef.current = false
@@ -110,7 +132,19 @@ function Home({ name }) {
 
                 </div>
 
-                
+                <div className='custom-card'>
+                    <div className='new-card'>
+                        <h2>Welcome Render Props</h2>
+                        <div>
+                            <h3>mouse Position</h3>
+                            <p>X: {pos.x} : Y: {pos.y}</p>
+                        </div>
+                    </div>
+                    <div className='new-card'>
+                        <h2>Welcome Render Props</h2>
+                        
+                    </div>
+                </div>
 
             </article>
         </section>

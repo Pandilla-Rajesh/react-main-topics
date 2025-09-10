@@ -233,6 +233,22 @@ place-self: end;
     }
 }
 
+.custom-card{
+    @apply grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 my-3 gap-3;
+    .new-card{
+        @apply bg-white p-3 rounded shadow-lg;
+        h2{
+            @apply text-2xl text-center font-semibold text-red-900 mb-2;
+        }
+        h3{
+            @apply text-sm text-center uppercase font-bold;
+        }
+        p{
+            @apply text-center font-bold text-green-900;
+        }
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
