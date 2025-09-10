@@ -13,7 +13,7 @@ export const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
-      <HeaderMain/>
+      {/* <HeaderMain/> */}
     </ThemeContext.Provider>
   );
 };

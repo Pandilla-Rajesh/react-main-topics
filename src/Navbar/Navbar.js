@@ -28,9 +28,9 @@ const Navbar = () => {
         {/* Navigation */}
         <div className={`absolute md:static top-16 left-0 md:w-auto md:bg-transparent 
         transition-all duration-300 ease-in z-4 mx-auto
-                        ${isOpen ? 'flex' : 'hidden'} lg:flex md:flex w-full bg-white flex-col`}>
+                        ${isOpen ? 'flex' : 'hidden'} lg:flex md:flex w-full`}>
           <ul className='md:flex md:items-center space-y-0 md:space-y-0
-           mx-auto md:space-x-0 p-2 md:p-0 sm:bg-white'>
+           mx-auto md:space-x-0 p-2 md:p-0 sm:bg-white lg:bg-transparent'>
             {[
               { to: '/home', label: 'Home' },
               { to: '/common', label: 'CommonPage' },
@@ -46,11 +46,8 @@ const Navbar = () => {
                 <NavLink
                   to={item.to}
                   className={({ isActive }) =>
-                    `block px-3 py-2 rounded-md transition font-medium ${
-                      isActive
-                        ? 'bg-green-700 text-white'
-                        : 'text-slate-700 hover:text-green-700'
-                    }`
+                    `block px-2 py-1 rounded-md transition font-medium text-sm
+                  ${isActive ? 'bg-green-700 text-white' : 'text-slate-700 hover:text-green-700'}`
                   }
                 >
                   {item.label}
@@ -63,13 +60,13 @@ const Navbar = () => {
           <ul className='mt-2 md:mt-0 md:ml-4 flex items-center'>
               <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className={`text-sm px-4 py-2 rounded-md border ${
+              className={`text-sm px-2 py-0 text-xl rounded-md ${
                 theme === 'light'
-                  ? 'bg-white text-black border-gray-300 hover:bg-gray-200'
-                  : 'bg-gray-900 text-white border-gray-700 hover:bg-gray-700'
+                  ? 'text-black bg-slate-50 hover:bg-gray-200'
+                  : 'bg-gray-900 border-slate-700 text-white  hover:bg-gray-700'
               }`}
             >
-              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+              {theme === 'light' ?  <i class="bi bi-brightness-low"></i> : <i class="bi bi-moon"></i>}
             </button>
           </ul>
         </div>
