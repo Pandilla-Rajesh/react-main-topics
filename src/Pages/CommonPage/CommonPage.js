@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from 'react'
 
-const CommonPage=()=>{
+const CommonPage = () => {
 
+    // window-resize//
     const [windowwidth, setWindowWidth] = useState(window.innerWidth)
+    const handleReSize = () => {
+        setWindowWidth(window.innerWidth)
+    }
+    // end //
+
+    // unmount-after-ten-seconds-for-the-counter //
+
+    const [showCounter, setShowCounter] = useState(true)
+    const [ncount, setNcount] = useState(0)
+    const [showMessage, setShowMessage] = useState(false)
+
+    // end //
+
     const [count, setCount] = useState(0)
-    
+
     // todo-list-function //
 
     const [todos, setToDos] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [searchterm, setSearchTerm] = useState('')
 
-    const handleAddTodo=()=>{
-        if(inputValue.trim()){
+    const handleAddTodo = () => {
+        if(inputValue.trim()) {
             setToDos([...todos, inputValue.trim()])
             setInputValue('')
             console.log(inputValue, 'value added done')
         }
     }
 
-  const filterTodos = todos.filter((list)=>
-    list.toLowerCase().includes(searchterm.toLowerCase())
-)
+    const filterTodos = todos.filter((list) =>
+        list.toLowerCase().includes(searchterm.toLowerCase())
+    )
 
     // end //
 
@@ -30,16 +44,16 @@ const CommonPage=()=>{
     const [currentDateTime, setCurrentDate] = useState(new Date())
     const [isruning, setIsRuning] = useState(false)
 
-    useEffect(()=>{
-                // timer //
-        if(isruning){
-    
-            const interval =setInterval(()=>{
-                    setTime((prev) => prev+1)
-                    setCurrentDate(new Date())
+    useEffect(() => {
+        // timer //
+        if(isruning) {
+
+            const interval = setInterval(() => {
+                setTime((prev) => prev + 1)
+                setCurrentDate(new Date())
             }, 100)
-            return()=>clearInterval(interval)
-        }else{
+            return () => clearInterval(interval)
+        } else {
             setTime(0)
         }
 
@@ -48,122 +62,200 @@ const CommonPage=()=>{
     // end //
 
     const [items, setItems] = useState(['Item1', 'Item2'])
-    const addItem=()=>{
+    const addItem = () => {
 
-        const newItem = `Items ${items.length+1}`
+        const newItem = `Items ${items.length + 1}`
         setItems([...items, newItem])
     }
 
-    const handleReSize=()=>{
-        setWindowWidth(window.innerWidth)
-    }
 
-    useEffect(()=>{
+    // unmount-count-after-10-seconds//
 
-        setCount((prev) => prev+0)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowCounter(false)
+            setShowMessage(true)
+        }, 10000)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    // useEffect(() => {
+
+    //     let timer1, timer2
+    //     if(showCounter) {
+
+    //         timer1 = setTimeout(() => {
+    //             setShowCounter(true)
+    //             setShowMessage(false)
+    //         }, 10000)
+    //     } else {
+    //         timer2 = setTimeout(() => {
+    //             setNcount(0)
+    //             setShowCounter(true)
+    //             setShowMessage(false)
+    //         }, 3000)
+    //     }
+
+    //     return () => {
+    //         clearTimeout(timer1)
+    //         clearTimeout(timer2)
+    //     }
+
+    // }, [showCounter])
+
+    // end //
+
+    useEffect(() => {
+
+        setCount((prev) => prev + 0)
         // add event-listner //
         window.addEventListener('resize', handleReSize)
 
         // cleanup on unmount//
-        return()=>{
+        return () => {
             window.removeEventListener('resize', handleReSize)
         }
-    
+
     }, [])
 
 
 
-    return(
+    return (
         <React.Fragment>
-                <section className='p-5'>
-            <article className='container'>
-                <div className='row'>
-                    <div className='col-md-6'>
-                       <div className='bg-white p-3 rounded-3 shadow-lg'>
-                            <h4 className='text-center my-2'>Welcome to the Common page Component</h4>
-                            <h2 className='text-center'>Window Width: {windowwidth}</h2>
-                            <h3 className='text-center'>Count: {count}</h3>
-                             <div className='text-center my-2'>
-                                <button className='btn btn-success p-2' onClick={()=>setCount(count+1)}>Counter</button>
-                             </div>
-                            <div className='mt-3'>
-                                <h4>Timer: {time} Seconds</h4>
-                                <h5>Date: {currentDateTime.toLocaleString()}</h5>
-                                <button className='btn btn-primary' onClick={()=>setIsRuning(!isruning)}>
-                                    {isruning ? 'Start' : 'Stop'}
-                                </button>
+            <section className='p-5'>
+                <article className='container'>
+                    <div className='row'>
+                        <div className='col-12'>
+                            <h4 className='text-center mb-3 display-5'>Welcome to the
+                                <span className='block fw-bold text-cyan-700'>Common page Component</span>
+                            </h4>
+                        </div>
+                        <div className='col-md-4'>
+                            <div className='bg-white rounded p-3 shadow-lg text-center'>
+                                <h3 className='fw-bold text-3xl mb-2'>unMount after 10seconds Counter Value</h3>
+                                <h2 className='text-2xl fw-bold text-orange-600'>Count: { ncount }</h2>
+                                <div>
+                                    { showCounter &&
+                                        <Counter setNcount={ setNcount } /> }
+                                    { !showCounter && showMessage && (
+                                        <p className='text-red-600'>Unmount the count</p>
+                                    ) }
+                                </div>
                             </div>
+                        </div>
+                        <div className='col-md-4'>
+                            <div className='bg-white p-3 rounded-3 shadow-lg text-center'>
+                                <h2 className='text-center fw-bold text-3xl'>
+                                    Window Width:
+                                    <span className='text-green-600'>{ windowwidth }</span>
+                                </h2>
+                                <h3 className='text-center'>Count: { count }</h3>
+                                <div className='text-center my-2'>
+                                    <button className='btn btn-success p-2' onClick={ () => setCount(count + 1) }>Counter</button>
+                                </div>
+                                <div className='mt-3'>
+                                    <h4>Timer: { time } Seconds</h4>
+                                    <h5>Date: { currentDateTime.toLocaleString() }</h5>
+                                    <button className='btn btn-primary' onClick={ () => setIsRuning(!isruning) }>
+                                        { isruning ? 'Start' : 'Stop' }
+                                    </button>
+                                </div>
 
-                       </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='bg-white p-3 rounded-3 shadow-lg'>
-                            <h4 className='text-center fw-bold mb-3'>Reconcellation Items and Spread operator using</h4>
-                            <div>
-                               <ul className='list-group'>
-                                {items.map((el, index)=>(
-                                    <li key={index} className='list-group-item'>{el}</li>
-                                ))}
-                               </ul>
-                               <div className='d-flex justify-content-end my-3'>
-                                    <button className='btn btn-warning' onClick={addItem}>Add Itme</button>
-                               </div>
+                            </div>
+                        </div>
+                        <div className='col-md-4'>
+                            <div className='bg-white p-3 rounded-3 shadow-lg'>
+                                <h4 className='text-center fw-bold mb-3'>Reconcellation Items and Spread operator using</h4>
+                                <div>
+                                    <ul className='list-group'>
+                                        { items.map((el, index) => (
+                                            <li key={ index } className='list-group-item'>{ el }</li>
+                                        )) }
+                                    </ul>
+                                    <div className='d-flex justify-content-end my-3'>
+                                        <button className='btn btn-warning' onClick={ addItem }>Add Itme</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section className='p-5 bg-success-subtle'>
-            <article className='container'>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <div className='bg-white shadow-lg rounded-3 p-3'>
-                            <h5 className='text-center my-3'>Welcome to the todo list added item in the input field</h5>
-                            <div>
-                                <form className='d-flex gap-3'>
-                                    <div className='input-group'>
-                                        <input type="text" className='form-control' 
-                                        value={inputValue}
-                                        onChange={(event)=>setInputValue(event.target.value)}
-                                        onKeyDown={(e)=>e.key === 'enter' && handleAddTodo()}
-                                        placeholder='Add new task' />
-                                        <button className='input-group-text btn btn-primary'
-                                        onClick={handleAddTodo}>Add Task</button>
-                                    </div>
-                                    <div className='input-group'>
-                                        <input type='text' className='form-control' 
-                                        value={searchterm} onChange={(e)=>setSearchTerm(e.target.value)}
-                                        placeholder='Search Task' />
-                                        <button className='input-group-text btn btn-success'
-                                        >Search Task</button>
-                                    </div>
-                                </form>
-                            </div>
-                            {/* render-todo-list */}
-                            <div>
-                                <ul className='list-group'>
-                                   {filterTodos.length > 0 ? (filterTodos.slice(0,5)?.map((list, index)=>(
-                                        <li className='list-group-item' key={index}>{list}</li>
-                                   ))):
-                                    (
-                                        <>
-                                            <p>No Data found</p>
-                                        </>
-                                    )
-                                   }
-                                </ul>
+            <section className='p-5 bg-success-subtle'>
+                <article className='container'>
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <div className='bg-white shadow-lg rounded-3 p-3'>
+                                <h5 className='text-center my-3'>Welcome to the todo list added item in the input field</h5>
+                                <div>
+                                    <form className='d-flex gap-3'>
+                                        <div className='input-group'>
+                                            <input type="text" className='form-control'
+                                                value={ inputValue }
+                                                onChange={ (event) => setInputValue(event.target.value) }
+                                                onKeyDown={ (e) => e.key === 'enter' && handleAddTodo() }
+                                                placeholder='Add new task' />
+                                            <button className='input-group-text btn btn-primary'
+                                                onClick={ handleAddTodo }>Add Task</button>
+                                        </div>
+                                        <div className='input-group'>
+                                            <input type='text' className='form-control'
+                                                value={ searchterm } onChange={ (e) => setSearchTerm(e.target.value) }
+                                                placeholder='Search Task' />
+                                            <button className='input-group-text btn btn-success'
+                                            >Search Task</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                {/* render-todo-list */ }
+                                <div>
+                                    <ul className='list-group'>
+                                        { filterTodos.length > 0 ? (filterTodos.slice(0, 5)?.map((list, index) => (
+                                            <li className='list-group-item' key={ index }>{ list }</li>
+                                        ))) :
+                                            (
+                                                <>
+                                                    <p>No Data found</p>
+                                                </>
+                                            )
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
         </React.Fragment>
-        
+
     )
+
+}
+const Counter = ({ setNcount }) => {
+
+    useEffect(() => {
+
+        let count = 0
+
+        const interval = setInterval(() => {
+            count += 1
+            setNcount(count)
+
+            if(count === 10) {
+                clearInterval(interval)
+            }
+        }, 1000)
+
+        return () => {
+            clearInterval(count)
+        }
+
+    }, [setNcount])
+
+    return <p>Counter is Runing</p>
 
 }
 export default CommonPage
